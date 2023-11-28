@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import {
   Container,
-  Logo,
   Link,
   Header,
 } from 'components/SharedLayout/SharedLayout.styled';

@@ -1,6 +1,6 @@
 import { useTrending } from 'hooks/useTrending';
 import { useLocation } from 'react-router-dom';
-import { Container, Wrapper, Image, StyledLink, Header } from './home.styled';
+import { Container, Wrapper, Image, StyledLink } from './home.styled';
 
 const HomePage = () => {
   const location = useLocation();
