@@ -4,7 +4,6 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useDetails } from 'hooks/useDetails';
 import { BackLink } from 'components/BackLink';
 import { Container, Wrapper } from './details.styled';
-import { StyledLink } from './home.styled';
 import Loader from 'components/Loader/Loader';
 
 import Cast from '../components/Cast/Cast';
@@ -55,7 +54,6 @@ const MovieDetailsPage = () => {
           <button onClick={e => setShowReviews(true)}>Reviews</button>
 
           {showReviews && <Reviews />}
-          {/* <StyledLink to="reviews">Reviews</StyledLink> */}
         </li>
       </ul>
 
