@@ -6,8 +6,6 @@ import NotFound from '../pages/NotFound';
 const HomePage = lazy(() => import('../pages/HomePage'));
 const Movies = lazy(() => import('../pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
-const Cast = lazy(() => import('./Cast/Cast'));
-const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (
