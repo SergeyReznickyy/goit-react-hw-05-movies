@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useDetails } from 'hooks/useDetails';
 import { BackLink } from 'components/BackLink';
@@ -7,10 +7,15 @@ import { Container, Wrapper } from './details.styled';
 import { StyledLink } from './home.styled';
 import Loader from 'components/Loader/Loader';
 
+import Cast from '../components/Cast/Cast';
+import Reviews from '../components/Reviews/Reviews';
+
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const { movie } = useDetails(movieId);
   const location = useLocation();
+  const [showCast, setShowCast] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
 
   const backLinkHref = location.state?.from ?? '/movies';
 
@@ -18,10 +23,14 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <BackLink to={backLinkHref}>Back </BackLink>
+      <BackLink to={backLinkHref}>Back to movie list</BackLink>
       <Container>
         <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              : `https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg`
+          }
           alt={`${movie.title}`}
           width="240"
         />
@@ -39,10 +48,14 @@ const MovieDetailsPage = () => {
       <h3>Additional Information</h3>
       <ul>
         <li>
-          <StyledLink to="cast">Cast</StyledLink>
+          <button onClick={e => setShowCast(true)}>Cast</button>
+          {showCast && <Cast />}
         </li>
         <li>
-          <StyledLink to="reviews">Reviews</StyledLink>
+          <button onClick={e => setShowReviews(true)}>Reviews</button>
+
+          {showReviews && <Reviews />}
+          {/* <StyledLink to="reviews">Reviews</StyledLink> */}
         </li>
       </ul>
 

@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useReviews } from 'hooks/useReviews';
 import Loader from 'components/Loader/Loader';
-import PropTypes from 'prop-types';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -28,7 +27,3 @@ const Reviews = () => {
 };
 
 export default Reviews;
-
-Reviews.propTypes = {
-  movieId: PropTypes.string.isRequired,
-};

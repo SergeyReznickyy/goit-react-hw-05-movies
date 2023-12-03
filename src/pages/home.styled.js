@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
+export const Container = styled.ul`
   display: grid;
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -12,7 +12,7 @@ export const Container = styled.div`
   margin-bottom: 60px;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.li`
   text-decoration: none;
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),

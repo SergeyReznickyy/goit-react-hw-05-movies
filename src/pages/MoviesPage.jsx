@@ -1,10 +1,11 @@
 import { SearchBox } from 'components/SearchBox/SearchBox';
 import Movies from 'components/Movies';
-import { useQuery } from 'hooks/useQuery';
+import { useQuery } from '../hooks/useQuery';
 import { useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({});
+
   const query = searchParams.get('query') ?? '';
   const { movies } = useQuery(query);
 
@@ -19,7 +20,7 @@ const MoviesPage = () => {
 
   return (
     <div>
-      <SearchBox value={query} onChange={updateQueryString} />
+      <SearchBox onChange={updateQueryString} />
       <Movies movies={visibleListOfMovies} />
     </div>
   );
