@@ -1,28 +1,23 @@
 import { Outlet } from 'react-router-dom';
-import { Suspense, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { Suspense, useRef } from 'react';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { useDetails } from 'hooks/useDetails';
 import { BackLink } from 'components/BackLink';
 import { Container, Wrapper } from './details.styled';
 import Loader from 'components/Loader/Loader';
 
-import Cast from '../components/Cast/Cast';
-import Reviews from '../components/Reviews/Reviews';
-
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const { movie } = useDetails(movieId);
   const location = useLocation();
-  const [showCast, setShowCast] = useState(false);
-  const [showReviews, setShowReviews] = useState(false);
 
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkHref = useRef(location.state?.from ?? '/');
 
   if (!movie) return <Loader />;
 
   return (
     <div>
-      <BackLink to={backLinkHref}>Back to movie list</BackLink>
+      <BackLink to={backLinkHref.current}>Back to movie list</BackLink>
       <Container>
         <img
           src={
@@ -47,16 +42,12 @@ const MovieDetailsPage = () => {
       <h3>Additional Information</h3>
       <ul>
         <li>
-          <button onClick={e => setShowCast(true)}>Cast</button>
-          {showCast && <Cast />}
+          <Link to="cast">Cast</Link>
         </li>
         <li>
-          <button onClick={e => setShowReviews(true)}>Reviews</button>
-
-          {showReviews && <Reviews />}
+          <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
